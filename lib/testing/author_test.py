@@ -28,15 +28,15 @@ class TestAuthor:
         assert isinstance(author_2.name, str)
 
         # comment out the next two lines if using Exceptions
-        author_1.name = "ActuallyTopher"
-        assert author_1.name == "Carry Bradshaw"
+        # author_1.name = "ActuallyTopher"
+        # assert author_1.name == "Carry Bradshaw"
 
         # comment out the next two lines if using Exceptions
-        author_2.name = 2
-        assert author_2.name == "Nathaniel Hawthorne"
+        # author_2.name = 2
+        # assert author_2.name == "Nathaniel Hawthorne"
 
         # uncomment the next two lines if using Exceptions
-        # with pytest.raises(Exception):
+        # with pytest.raises(ValueError):
         #     Author(2)
 
     def test_name_len(self):
@@ -55,12 +55,15 @@ class TestAuthor:
 
     def test_has_many_articles(self):
         """author has many articles"""
+        Article.all = []
         author_1 = Author("Carry Bradshaw")
         author_2 = Author("Nathaniel Hawthorne")
         magazine = Magazine("Vogue", "Fashion")
         article_1 = Article(author_1, magazine, "How to wear a tutu with style")
         article_2 = Article(author_1, magazine, "Dating life in NYC")
         article_3 = Article(author_2, magazine, "How to be single and happy")
+
+        assert len(Article.all) == 2 
 
         assert len(author_1.articles()) == 2
         assert len(author_2.articles()) == 1

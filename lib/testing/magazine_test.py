@@ -7,6 +7,7 @@ from classes.many_to_many import Author
 
 class TestMagazine:
     """Magazine in many_to_many.py"""
+    
 
     def test_has_name(self):
         """Magazine is initialized with a name"""

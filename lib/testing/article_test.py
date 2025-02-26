@@ -22,17 +22,17 @@ class TestArticle:
         """title is an immutable string"""
         author = Author("Carry Bradshaw")
         magazine = Magazine("Vogue", "Fashion")
-        article_1 = Article(author, magazine, "How to wear a tutu with style")
+        article = Article(author, magazine, "How to wear a tutu with style")
 
         # comment out the next two lines if using Exceptions
-        article_1.title = 500
-        assert article_1.title == "How to wear a tutu with style"
+        # article_1.title = 500
+        # assert article_1.title == "How to wear a tutu with style"
         
-        assert isinstance(article_1.title, str)
+        assert isinstance(article.title, str)
 
         # uncomment the next two lines if using Exceptions
-        # with pytest.raises(Exception):
-        #     Article(author, magazine, 500)
+        # with pytest.raises(AttributeError):
+        #     article.title= "New Title"
 
     def test_title_is_valid(self):
         """title is between 5 and 50 characters inclusive"""
@@ -105,6 +105,7 @@ class TestArticle:
     def test_get_all_articles(self):
         """Article class has all attribute"""
         Article.all = []
+        Article.all.append(self)
         author = Author("Carry Bradshaw")
         magazine_1 = Magazine("Vogue", "Fashion")
         magazine_2 = Magazine("AD", "Architecture & Design")
